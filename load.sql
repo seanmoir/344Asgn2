@@ -27,7 +27,14 @@ CREATE TABLE orders
        order_Received DATE,
        price NUMERIC(15,2),
        GST NUMERIC(15,2),
-       total_Price NUMERIC(15,2));
+       customer_ID INT REFERENCES customer(customer_ID),
+       request_date DATE,
+       payment_ID INT REFERENCES payment(payment_ID),
+       payment_timestamp ??,
+       delivery_ID INT REFERENCES delivery(delivery_ID),
+       employee_ID INT REFERENCES employee(employee_ID)
+       );
+       
 
 CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
@@ -42,7 +49,7 @@ CREATE TABLE categorys
        category_name VARCHAR(15));
 
 CREATE TABLE products
-       (product_ID INT PRIMARY KEY,
+       (product_name VARCHAR(25) PRIMARY KEY, 
        category_ID INT REFERENCES categorys(category_ID),
        item_description VARCHAR(20),
        product_name VARCHAR(20),
@@ -51,7 +58,7 @@ CREATE TABLE products
 
 CREATE TABLE payment
        (payment_ID INT PRIMARY KEY,
-       credit_card_num VARCHAR(20),
+       credit_card_num INT,
        name_on_card VARCHAR(25),
        expiry_month INT,
        expiry_year INT,
@@ -72,9 +79,23 @@ CREATE TABLE employees
        employee_street_name VARCHAR(30),
        employee_country VARCHAR(30),
        employee_phone_num VARCHAR(15),
-       position VARCHAR(15));
+       employee_position VARCHAR(15));
+
+CREATE TABLE contain
+       (order_ID INT REFERENCES orders,
+       product_name VARCHAR(25) REFERENCES products(products_name),
+       product_price INT,
+       product_quantity INT);
 
 
+CREATE TABLE employee_phone_num
+       (employee_ID INT REFERENCES employees(employee_ID),
+       phone_number INT);
 
+
+CREATE TABLE customer_phone_num
+       (customer_ID INT REFERENCES customer(customer_ID),
+       phone_number INT);
+       
 COMMIT;
 
