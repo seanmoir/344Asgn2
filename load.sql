@@ -6,6 +6,8 @@ DROP TABLE delivery;
 DROP TABLE products;
 DROP TABLE payment;
 DROP TABLE employees;
+DROP TABLE customer_phone_num
+DROP TABLE customer_phone_num
 
 CREATE TABLE customer
        (customer_ID INT PRIMARY KEY,
@@ -14,7 +16,6 @@ CREATE TABLE customer
        lname VARCHAR(25),
        dob DATE,
        email VARCHAR(25),
-       phone_num VARCHAR(15),
        street_num VARCHAR(30),
        suburb VARCHAR(30),
        street_name VARCHAR(30),
@@ -30,7 +31,7 @@ CREATE TABLE orders
        customer_ID INT REFERENCES customer(customer_ID),
        request_date DATE,
        payment_ID INT REFERENCES payment(payment_ID),
-       payment_timestamp ??,
+       payment_timestamp TIMESTAMP DEFAULT TIMESTAMP,
        delivery_ID INT REFERENCES delivery(delivery_ID),
        employee_ID INT REFERENCES employee(employee_ID)
        );
@@ -40,9 +41,9 @@ CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE,
        delivery_street_num VARCHAR(30),
+       delivery_street_name VARCHAR(30),
        delivery_suburb VARCHAR(30),
-       delivery_country VARCHAR(30),
-       delivery_street_name VARCHAR(30));
+       delivery_country VARCHAR(30));
 
 CREATE TABLE categorys
        (category_ID INT PRIMARY KEY,
@@ -75,10 +76,9 @@ CREATE TABLE employees
        start_date DATE,
        payment_account VARCHAR(20),
        employee_street_num VARCHAR(30),
-       employee_suburb VARCHAR(30),
        employee_street_name VARCHAR(30),
+       employee_suburb VARCHAR(30),
        employee_country VARCHAR(30),
-       employee_phone_num VARCHAR(15),
        employee_position VARCHAR(15));
 
 CREATE TABLE contain
