@@ -25,7 +25,7 @@ INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
 INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
 	VALUES(684, 29, 'henry', 'alan', 'robb', to_date('08/12/1995', 'DD/MM/YYYY'), 'henry@email.com');
 INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
-	VALUES(194, 68, 'sarah', 'georgia', 'cole', to_date('31/03/1987', 'DD/MM/YYYY'), 'georgia@email.com);
+	VALUES(194, 68, 'sarah', 'georgia', 'cole', to_date('31/03/1987', 'DD/MM/YYYY'), 'georgia@email.com');
 	
 COMMIT;	
 
