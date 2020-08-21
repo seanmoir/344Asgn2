@@ -83,11 +83,11 @@ CREATE TABLE products
        wholesale_cost NUMERIC(15,2) NOT NULL);
 					
 INSERT INTO products(product_name, category_ID, item_description, price, wholesale_cost)
-	VALUES(32908, 5, 'black hoodie', 24.9, 12.5);
+	VALUES('cool hoodie', 5, 'black hoodie', 24.9, 12.5);
 INSERT INTO products(product_name, category_ID, item_description, price, wholesale_cost)
-	VALUES(43589, 8, 'warm pants', 19.9, 9.7);
+	VALUES('branded pants', 8, 'warm pants', 19.9, 9.7);
 INSERT INTO products(product_name, category_ID, item_description, price, wholesale_cost)
-	VALUES(23904, 2, 'sports shorts', 22.9, 11.3);
+	VALUES('soccer shorts', 2, 'sports shorts', 22.9, 11.3);
 					
 COMMIT;
 
@@ -137,6 +137,11 @@ CREATE TABLE orders
        delivery_ID INT REFERENCES delivery(delivery_ID),
        employee_ID INT REFERENCES employees(employee_ID)
        );
+					
+INSERT INTO orders(order_ID, order_status, order_Received, price, GST, customer_ID, request_date, payment_ID, payment_timestamp, delivery_ID, employee_ID)
+	VALUES(02835, 'packing', to_date('27/07/2020', 'DD/MM/YYYY'), 49.9, 11.4, 582, to_date('26/07/2020', 'DD/MM/YYYY'), NOW(), 32485, 98, 98405);
+
+COMMIT;
 
 CREATE TABLE contains
        (order_ID INT REFERENCES orders,
