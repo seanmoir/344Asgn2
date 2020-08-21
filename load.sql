@@ -92,6 +92,10 @@ CREATE TABLE address
 					
 INSERT INTO address(address_ID, street_num, street_name, suburb, country)
 	VALUES(34, '660', 'castle', 'north dunedin', 'new zealand');
+INSERT INTO address(address_ID, street_num, street_name, suburb, country)
+	VALUES(29, '616', 'castle', 'north dunedin', 'new zealand');
+INSERT INTO address(address_ID, street_num, street_name, suburb, country)
+	VALUES(68, '59', 'union', 'north dunedin', 'new zealand');
 					
 INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
 	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
