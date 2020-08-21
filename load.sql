@@ -19,7 +19,13 @@ CREATE TABLE address
        country VARCHAR(30) NOT NULL);
 
 INSERT INTO address(address_ID, street_num, street_name, suburb, country)
-       VALUES(34, '1', 'test', 'suburbia', 'NZ');
+	VALUES(34, '660', 'castle', 'north dunedin', 'new zealand');
+
+INSERT INTO address(address_ID, street_num, street_name, suburb, country)
+	VALUES(29, '616', 'castle', 'north dunedin', 'new zealand');
+
+INSERT INTO address(address_ID, street_num, street_name, suburb, country)
+	VALUES(68, '59', 'union', 'north dunedin', 'new zealand');
 
 COMMIT;
 
@@ -33,11 +39,11 @@ CREATE TABLE customer
        email VARCHAR(25) NOT NULL
        );
        
-INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, email)
 	VALUES(582, 34, 'john', 'william', 'smith', to_date('04/01/2001', 'DD/MM/YYYY'), 'john@email.com');
-INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, email)
 	VALUES(684, 29, 'henry', 'alan', 'robb', to_date('08/12/1995', 'DD/MM/YYYY'), 'henry@email.com');
-INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, email)
 	VALUES(194, 68, 'sarah', 'georgia', 'cole', to_date('31/03/1987', 'DD/MM/YYYY'), 'georgia@email.com');
 	
 COMMIT;	
@@ -76,11 +82,11 @@ CREATE TABLE products
        price NUMERIC(15,2) NOT NULL,
        wholesale_cost NUMERIC(15,2) NOT NULL);
 					
-INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+INSERT INTO products(product_name, category_ID, item_description, price, wholesale_cost)
 	VALUES(32908, 5, 'black hoodie', 24.9, 12.5);
-INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+INSERT INTO products(product_name, category_ID, item_description, price, wholesale_cost)
 	VALUES(43589, 8, 'warm pants', 19.9, 9.7);
-INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+INSERT INTO products(product_name, category_ID, item_description, price, wholesale_cost)
 	VALUES(23904, 2, 'sports shorts', 22.9, 11.3);
 					
 COMMIT;
@@ -128,11 +134,11 @@ CREATE TABLE employee_phone_num
        (employee_ID INT REFERENCES employees(employee_ID),
        phone_number INT NOT NULL);
 					
-INSERT INTO customer_phone_num(customer_ID, phone_number) 
+INSERT INTO employee_phone_num(employee_ID, phone_number) 
 	VALUES(942, 02405423940);
-INSERT INTO customer_phone_num(customer_ID, phone_number) 
+INSERT INTO employee_phone_num(employee_ID, phone_number) 
 	VALUES(130, 06105433650);
-INSERT INTO customer_phone_num(customer_ID, phone_number) 
+INSERT INTO employee_phone_num(employee_ID, phone_number) 
 	VALUES(348, 02430542365);
 
 COMMIT
@@ -148,14 +154,4 @@ INSERT INTO customer_phone_num(customer_ID, phone_number)
 INSERT INTO customer_phone_num(customer_ID, phone_number) 
 	VALUES(194, 0230542355);
 
-COMMIT;	 
-					
-INSERT INTO address(address_ID, street_num, street_name, suburb, country)
-	VALUES(34, '660', 'castle', 'north dunedin', 'new zealand');
-INSERT INTO address(address_ID, street_num, street_name, suburb, country)
-	VALUES(29, '616', 'castle', 'north dunedin', 'new zealand');
-INSERT INTO address(address_ID, street_num, street_name, suburb, country)
-	VALUES(68, '59', 'union', 'north dunedin', 'new zealand');
-				
 COMMIT;
-
