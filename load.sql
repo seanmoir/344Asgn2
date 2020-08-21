@@ -1,6 +1,5 @@
 DROP TABLE employee_phone_num;
 DROP TABLE customer_phone_num;
-DROP TABLE address;
 DROP TABLE contains;
 DROP TABLE orders;
 DROP TABLE products;
@@ -9,18 +8,32 @@ DROP TABLE payment;
 DROP TABLE delivery;
 DROP TABLE employees;
 DROP TABLE customer;
+DROP TABLE address;
+
+
+CREATE TABLE address 
+      (address_ID INT PRIMARY KEY,
+       street_num VARCHAR(30) NOT NULL,
+       street_name VARCHAR(30) NOT NULL,
+       suburb VARCHAR(30) NOT NULL,
+       country VARCHAR(30) NOT NULL);
+
+INSERT INTO address(address_ID, street_num, street_name, suburb, country)
+       VALUES(34, '1', 'test', 'suburbia', 'NZ');
+
+COMMIT;
 
 CREATE TABLE customer
        (customer_ID INT PRIMARY KEY,
-       address_ID INT REFERENCE address(address_ID),
+       address_ID INT REFERENCES address(address_ID),
        fname VARCHAR(25) NOT NULL,
        mname VARCHAR(25),
        lname VARCHAR(25) NOT NULL,
        dob DATE NOT NULL,
-       email VARCHAR(25) NOT NULL,
+       email VARCHAR(25) NOT NULL
        );
        
-INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, email)
 	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
 	
 COMMIT;	
@@ -28,7 +41,7 @@ COMMIT;
 CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE NOT NULL,
-       address_ID INT REFERENCE address(address_ID));
+       address_ID INT REFERENCES address(address_ID));
 				
 CREATE TABLE categorys
        (category_ID INT PRIMARY KEY,
@@ -57,7 +70,7 @@ CREATE TABLE employees
        employee_DOB DATE NOT NULL,
        start_date DATE NOT NULL,
        payment_account VARCHAR(20) NOT NULL,
-       address_ID INT REFERENCE address(address_ID),
+       address_ID INT REFERENCES address(address_ID),
        employee_position VARCHAR(15) NOT NULL);
 
 CREATE TABLE orders
@@ -105,13 +118,6 @@ INSERT INTO customer_phone_num(customer_ID, phone_number)
 	VALUES(194, 0230542355);
 
 COMMIT;	 
-
-CREATE TABLE address 
-      (address_ID INT PRIMARY KEY,
-       street_num VARCHAR(30) NOT NULL,
-       street_name VARCHAR(30) NOT NULL,
-       suburb VARCHAR(30) NOT NULL,
-       country VARCHAR(30) NOT NULL);
 					
 INSERT INTO address(address_ID, street_num, street_name, suburb, country)
 	VALUES(34, '660', 'castle', 'north dunedin', 'new zealand');
