@@ -21,7 +21,11 @@ CREATE TABLE customer
        );
        
 INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
-	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
+	VALUES(582, 34, 'john', 'william', 'smith', to_date('04/01/2001', 'DD/MM/YYYY'), 'john@email.com');
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(684, 29, 'henry', 'alan', 'robb', to_date('08/12/1995', 'DD/MM/YYYY'), 'henry@email.com');
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(194, 68, 'sarah', 'georgia', 'cole', to_date('31/03/1987', 'DD/MM/YYYY'), 'georgia@email.com
 	
 COMMIT;	
 
