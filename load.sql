@@ -33,6 +33,15 @@ CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE NOT NULL,
        address_ID INT REFERENCE address(address_ID));
+					
+INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
+	VALUES(98, to_date('31/10/2020', 'DD/MM/YYYY'), 34);
+INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
+	VALUES(87, to_date('27/11/2020', 'DD/MM/YYYY'), 29);
+INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
+	VALUES(13, to_date('4/10/2020', 'DD/MM/YYYY'), 68);
+
+COMMIT;
 				
 CREATE TABLE categorys
        (category_ID INT PRIMARY KEY,
