@@ -1,13 +1,13 @@
-DROP TABLE employee_phone_num;
-DROP TABLE customer_phone_num;
-DROP TABLE contains;
-DROP TABLE orders;
-DROP TABLE products;
-DROP TABLE categorys;
-DROP TABLE payment;
 DROP TABLE delivery;
-DROP TABLE employees;
+DROP TABLE categorys;
+DROP TABLE orders;
+DROP TABLE delivery;
+DROP TABLE products;
+DROP TABLE payment;
+DROP TABLE customer_phone_num;
+DROP TABLE employee_phone_num;
 DROP TABLE customer;
+DROP TABLE employees;
 
 CREATE TABLE customer
        (customer_ID INT PRIMARY KEY,
@@ -22,6 +22,14 @@ CREATE TABLE customer
        country VARCHAR(30)
        );
 
+CREATE TABLE payment
+       (payment_ID INT PRIMARY KEY,
+       credit_card_num INT,
+       name_on_card VARCHAR(25),
+       expiry_month INT,
+       expiry_year INT,
+       crc_num INT);
+
 CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE,
@@ -30,25 +38,7 @@ CREATE TABLE delivery
        delivery_suburb VARCHAR(30),
        delivery_country VARCHAR(30));
 
-CREATE TABLE categorys
-       (category_ID INT PRIMARY KEY,
-       category_name VARCHAR(15));
-
-CREATE TABLE products
-       (product_name VARCHAR(25) PRIMARY KEY, 
-       category_ID INT REFERENCES categorys(category_ID),
-       item_description VARCHAR(20),
-       price NUMERIC(15,2),
-       wholesale_cost NUMERIC(15,2));
-
-CREATE TABLE payment
-       (payment_ID INT PRIMARY KEY,
-       credit_card_num INT,
-       name_on_card VARCHAR(25),
-       expiry_month INT,
-       expiry_year INT,
-       crc_num INT);
-CREATE TABLE employees
+CREATE TABLE employee
        (employee_ID INT PRIMARY KEY,
        employee_fname VARCHAR(30),
        employee_mname VARCHAR(30),
@@ -71,30 +61,44 @@ CREATE TABLE orders
        customer_ID INT REFERENCES customer(customer_ID),
        request_date DATE,
        payment_ID INT REFERENCES payment(payment_ID),
-       payment_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       payment_timestamp TIMESTAMP(0), 
        delivery_ID INT REFERENCES delivery(delivery_ID),
-       employee_ID INT REFERENCES employees(employee_ID)
+       employee_ID INT REFERENCES employee(employee_ID)
        );
+       
+
+CREATE TABLE categorys
+       (category_ID INT PRIMARY KEY,
+       category_name VARCHAR(15));
+
+CREATE TABLE products
+       (product_name VARCHAR(25) PRIMARY KEY, 
+       category_ID INT REFERENCES categorys(category_ID),
+       item_description VARCHAR(20),
+       product_name VARCHAR(20),
+       price NUMERIC(15,2),
+       wholesale_cost NUMERIC(15,2));
 
 
-CREATE TABLE contains
+CREATE TABLE contain
        (order_ID INT REFERENCES orders,
-       product_name VARCHAR(25) REFERENCES products(product_name),
+       product_name VARCHAR(25) REFERENCES products(products_name),
        product_price INT,
        product_quantity INT);
+
 
 CREATE TABLE employee_phone_num
        (employee_ID INT REFERENCES employees(employee_ID),
        phone_number INT);
+
 
 CREATE TABLE customer_phone_num
        (customer_ID INT REFERENCES customer(customer_ID),
        phone_number INT);
 
 
+INSERT INTO customer(1, test, m, test, to_date("DD/MM/YYYY", "01/01/2001"), "test@xyz.com", "01", "suburbia", "yeet", "NZ");
 
-INSERT INTO customer(customer_ID, fname, mname, lname, dob, email, street_num, suburb, street_name, country)
-	VALUES(1, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com', '01', 'suburbia', 'yeet', 'NZ');
 
 COMMIT;
 
