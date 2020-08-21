@@ -83,6 +83,15 @@ CREATE TABLE contains
 CREATE TABLE employee_phone_num
        (employee_ID INT REFERENCES employees(employee_ID),
        phone_number INT NOT NULL);
+					
+INSERT INTO customer_phone_num(customer_ID, phone_number) 
+	VALUES(942, 02405423940);
+INSERT INTO customer_phone_num(customer_ID, phone_number) 
+	VALUES(130, 06105433650);
+INSERT INTO customer_phone_num(customer_ID, phone_number) 
+	VALUES(348, 02430542365);
+
+COMMIT
 
 CREATE TABLE customer_phone_num
        (customer_ID INT REFERENCES customer(customer_ID),
