@@ -88,10 +88,13 @@ CREATE TABLE address
        street_num VARCHAR(30) NOT NULL,
        street_name VARCHAR(30) NOT NULL,
        suburb VARCHAR(30) NOT NULL,
-       country VARCHAR(30) NOT NULL);		 
-
-INSERT INTO customer(customer_ID, fname, mname, lname, dob, email, street_num, suburb, street_name, country)
-	VALUES(1, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com', '01', 'suburbia', 'yeet', 'NZ');
+       country VARCHAR(30) NOT NULL);
+					
+INSERT INTO address(address_ID, street_num, street_name, suburb, country)
+	VALUES(34, '660', 'castle', 'north dunedin', 'new zealand');
+					
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
 
 COMMIT;
 
