@@ -46,6 +46,15 @@ COMMIT;
 CREATE TABLE categorys
        (category_ID INT PRIMARY KEY,
        category_name VARCHAR(15) NOT NULL);
+					
+INSERT INTO categorys(category_ID, category_name)
+	VALUES(5, 'hoodies');
+INSERT INTO categorys(category_ID, category_name)
+	VALUES(8, 'pants');
+INSERT INTO categorys(category_ID, category_name)
+	VALUES(2, 'shorts');
+
+COMMIT;
 
 CREATE TABLE products
        (product_name VARCHAR(25) PRIMARY KEY, 
