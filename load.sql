@@ -19,6 +19,11 @@ CREATE TABLE customer
        dob DATE NOT NULL,
        email VARCHAR(25) NOT NULL,
        );
+       
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
+	
+COMMIT;	
 
 CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
@@ -82,6 +87,15 @@ CREATE TABLE employee_phone_num
 CREATE TABLE customer_phone_num
        (customer_ID INT REFERENCES customer(customer_ID),
        phone_number INT NOT NULL);
+					
+INSERT INTO customer_phone_num(customer_ID, phone_number) 
+	VALUES(582, 02105323950);
+INSERT INTO customer_phone_num(customer_ID, phone_number) 
+	VALUES(684, 03105423650);
+INSERT INTO customer_phone_num(customer_ID, phone_number) 
+	VALUES(194, 0230542355);
+
+COMMIT;	 
 
 CREATE TABLE address 
       (address_ID INT PRIMARY KEY,
@@ -96,9 +110,6 @@ INSERT INTO address(address_ID, street_num, street_name, suburb, country)
 	VALUES(29, '616', 'castle', 'north dunedin', 'new zealand');
 INSERT INTO address(address_ID, street_num, street_name, suburb, country)
 	VALUES(68, '59', 'union', 'north dunedin', 'new zealand');
-					
-INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
-	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
-
+				
 COMMIT;
 
