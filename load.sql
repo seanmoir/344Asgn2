@@ -159,11 +159,11 @@ CREATE TABLE employee_phone_num
        phone_number INT NOT NULL);
 					
 INSERT INTO employee_phone_num(employee_ID, phone_number) 
-	VALUES(942, 02405423940);
+	VALUES(98405, 02405423940);
 INSERT INTO employee_phone_num(employee_ID, phone_number) 
-	VALUES(130, 06105433650);
+	VALUES(98405, 06105433650);
 INSERT INTO employee_phone_num(employee_ID, phone_number) 
-	VALUES(348, 02430542365);
+	VALUES(98405, 02430542365);
 
 COMMIT
 
