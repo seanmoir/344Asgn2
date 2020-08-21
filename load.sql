@@ -1,5 +1,6 @@
 DROP TABLE employee_phone_num;
 DROP TABLE customer_phone_num;
+DROP TABLE address;
 DROP TABLE contains;
 DROP TABLE orders;
 DROP TABLE products;
@@ -8,29 +9,15 @@ DROP TABLE payment;
 DROP TABLE delivery;
 DROP TABLE employees;
 DROP TABLE customer;
-DROP TABLE address;
-
-
-CREATE TABLE address 
-      (address_ID INT PRIMARY KEY,
-       street_num VARCHAR(30) NOT NULL,
-       street_name VARCHAR(30) NOT NULL,
-       suburb VARCHAR(30) NOT NULL,
-       country VARCHAR(30) NOT NULL);
-
-INSERT INTO address(address_ID, street_num, street_name, suburb, country)
-       VALUES(34, '1', 'test', 'suburbia', 'NZ');
-
-COMMIT;
 
 CREATE TABLE customer
        (customer_ID INT PRIMARY KEY,
-       address_ID INT REFERENCES address(address_ID),
+       address_ID INT REFERENCE address(address_ID),
        fname VARCHAR(25) NOT NULL,
        mname VARCHAR(25),
        lname VARCHAR(25) NOT NULL,
        dob DATE NOT NULL,
-       email VARCHAR(25) NOT NULL
+       email VARCHAR(25) NOT NULL,
        );
        
 INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
@@ -45,7 +32,7 @@ COMMIT;
 CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE NOT NULL,
-       address_ID INT REFERENCES address(address_ID));
+       address_ID INT REFERENCE address(address_ID));
 					
 INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
 	VALUES(98, to_date('31/10/2020', 'DD/MM/YYYY'), 34);
@@ -92,6 +79,15 @@ CREATE TABLE payment
        expiry_month INT NOT NULL,
        expiry_year INT NOT NULL,
        crc_num INT NOT NULL);
+					
+INSERT INTO payment(payment_ID, credit_card_num, name_on_card, expiry_month, expiry_year, crc_num)
+	VALUES(32485, 1111222233334444, 'J W Smith', 11, 24, 000);
+INSERT INTO payment(payment_ID, credit_card_num, name_on_card, expiry_month, expiry_year, crc_num)
+	VALUES(23987, 1111222233334444, 'H A Robb', 02, 23, 000);
+INSERT INTO payment(payment_ID, credit_card_num, name_on_card, expiry_month, expiry_year, crc_num)
+	VALUES(89133, 1111222233334444, 'S A Cole', 07, 23, 000);
+
+COMMIT;
 			      
 CREATE TABLE employees
        (employee_ID INT PRIMARY KEY,
@@ -101,8 +97,13 @@ CREATE TABLE employees
        employee_DOB DATE NOT NULL,
        start_date DATE NOT NULL,
        payment_account VARCHAR(20) NOT NULL,
-       address_ID INT REFERENCES address(address_ID),
+       address_ID INT REFERENCE address(address_ID),
        employee_position VARCHAR(15) NOT NULL);
+					
+INSERT INTO employees(employee_ID, employee_fname, employee_mname, employee_lname, employee_DOB, start_date, payment_account, address_ID, employee_position)
+	VALUES(98405, 'brodie', 'scott', 'bosceke', to_date('27/11/1983', 'DD/MM/YYYY'), to_date('21/10/2018', 'DD/MM/YYYY'), '0348570948356-00', 34, 'manager');
+
+COMMIT;
 
 CREATE TABLE orders
        (order_ID INT Primary KEY,
@@ -128,11 +129,11 @@ CREATE TABLE employee_phone_num
        (employee_ID INT REFERENCES employees(employee_ID),
        phone_number INT NOT NULL);
 					
-INSERT INTO customer_phone_num(customer_ID, phone_number) 
+INSERT INTO employee_phone_num(employee_ID, phone_number) 
 	VALUES(942, 02405423940);
-INSERT INTO customer_phone_num(customer_ID, phone_number) 
+INSERT INTO employee_phone_num(employee_ID, phone_number) 
 	VALUES(130, 06105433650);
-INSERT INTO customer_phone_num(customer_ID, phone_number) 
+INSERT INTO employee_phone_num(employee_ID, phone_number) 
 	VALUES(348, 02430542365);
 
 COMMIT
@@ -149,6 +150,13 @@ INSERT INTO customer_phone_num(customer_ID, phone_number)
 	VALUES(194, 0230542355);
 
 COMMIT;	 
+
+CREATE TABLE address 
+      (address_ID INT PRIMARY KEY,
+       street_num VARCHAR(30) NOT NULL,
+       street_name VARCHAR(30) NOT NULL,
+       suburb VARCHAR(30) NOT NULL,
+       country VARCHAR(30) NOT NULL);
 					
 INSERT INTO address(address_ID, street_num, street_name, suburb, country)
 	VALUES(34, '660', 'castle', 'north dunedin', 'new zealand');
