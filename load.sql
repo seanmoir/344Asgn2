@@ -33,8 +33,12 @@ CREATE TABLE customer
        email VARCHAR(25) NOT NULL
        );
        
-INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, email)
-	VALUES(1, 34, 'test', 'm', 'test', to_date('01/01/2001', 'DD/MM/YYYY'), 'test@xyz.com');
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(582, 34, 'john', 'william', 'smith', to_date('04/01/2001', 'DD/MM/YYYY'), 'john@email.com');
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(684, 29, 'henry', 'alan', 'robb', to_date('08/12/1995', 'DD/MM/YYYY'), 'henry@email.com');
+INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, emai)
+	VALUES(194, 68, 'sarah', 'georgia', 'cole', to_date('31/03/1987', 'DD/MM/YYYY'), 'georgia@email.com');
 	
 COMMIT;	
 
@@ -42,10 +46,28 @@ CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE NOT NULL,
        address_ID INT REFERENCES address(address_ID));
+					
+INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
+	VALUES(98, to_date('31/10/2020', 'DD/MM/YYYY'), 34);
+INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
+	VALUES(87, to_date('27/11/2020', 'DD/MM/YYYY'), 29);
+INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
+	VALUES(13, to_date('4/10/2020', 'DD/MM/YYYY'), 68);
+
+COMMIT;
 				
 CREATE TABLE categorys
        (category_ID INT PRIMARY KEY,
        category_name VARCHAR(15) NOT NULL);
+					
+INSERT INTO categorys(category_ID, category_name)
+	VALUES(5, 'hoodies');
+INSERT INTO categorys(category_ID, category_name)
+	VALUES(8, 'pants');
+INSERT INTO categorys(category_ID, category_name)
+	VALUES(2, 'shorts');
+
+COMMIT;
 
 CREATE TABLE products
        (product_name VARCHAR(25) PRIMARY KEY, 
@@ -53,6 +75,15 @@ CREATE TABLE products
        item_description VARCHAR(20),
        price NUMERIC(15,2) NOT NULL,
        wholesale_cost NUMERIC(15,2) NOT NULL);
+					
+INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+	VALUES(32908, 5, 'black hoodie', 24.9, 12.5);
+INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+	VALUES(43589, 8, 'warm pants', 19.9, 9.7);
+INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+	VALUES(23904, 2, 'sports shorts', 22.9, 11.3);
+					
+COMMIT;
 
 CREATE TABLE payment
        (payment_ID INT PRIMARY KEY,
