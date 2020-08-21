@@ -1,6 +1,5 @@
 DROP TABLE employee_phone_num;
 DROP TABLE customer_phone_num;
-DROP TABLE address;
 DROP TABLE contains;
 DROP TABLE orders;
 DROP TABLE products;
