@@ -148,6 +148,11 @@ CREATE TABLE contains
        product_name VARCHAR(25) REFERENCES products(product_name),
        product_price INT NOT NULL,
        product_quantity INT NOT NULL);
+					
+INSERT INTO contains(order_ID, product_name, product_price, product_quantity)
+	VALUES(02835, 'soccer shorts', 22.9, 2);
+
+COMMIT;
 
 CREATE TABLE employee_phone_num
        (employee_ID INT REFERENCES employees(employee_ID),
