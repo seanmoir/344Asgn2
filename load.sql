@@ -62,6 +62,15 @@ CREATE TABLE products
        item_description VARCHAR(20),
        price NUMERIC(15,2) NOT NULL,
        wholesale_cost NUMERIC(15,2) NOT NULL);
+					
+INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+	VALUES(32908, 5, 'black hoodie', 24.9, 12.5);
+INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+	VALUES(43589, 8, 'warm pants', 19.9, 9.7);
+INSERT INTO products(product_ID, category_ID, item_description, price, wholesale_cost)
+	VALUES(23904, 2, 'sports shorts', 22.9, 11.3);
+					
+COMMIT;
 
 CREATE TABLE payment
        (payment_ID INT PRIMARY KEY,
