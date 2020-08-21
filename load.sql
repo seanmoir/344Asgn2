@@ -137,6 +137,11 @@ CREATE TABLE orders
        delivery_ID INT REFERENCES delivery(delivery_ID),
        employee_ID INT REFERENCES employees(employee_ID)
        );
+					
+INSERT INTO orders(order_ID, order_status, order_Received, price, GST, customer_ID, request_date, payment_ID, payment_timestamp, delivery_ID, employee_ID)
+	VALUES(02835, 'packing', to_date('27/07/2020', 'DD/MM/YYYY'), 49.9, 11.4, 582, to_date('26/07/2020', 'DD/MM/YYYY'), NOW(), 32485, 98, 98405);
+
+COMMIT;
 
 CREATE TABLE contains
        (order_ID INT REFERENCES orders,
