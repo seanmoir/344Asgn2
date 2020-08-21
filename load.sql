@@ -31,12 +31,12 @@ COMMIT;
 
 CREATE TABLE customer
        (customer_ID INT PRIMARY KEY,
-       address_ID INT REFERENCE address(address_ID),
+       address_ID INT REFERENCES address(address_ID),
        fname VARCHAR(25) NOT NULL,
        mname VARCHAR(25),
        lname VARCHAR(25) NOT NULL,
        dob DATE NOT NULL,
-       email VARCHAR(25) NOT NULL,
+       email VARCHAR(25) NOT NULL
        );
        
 INSERT INTO customer(customer_ID, address_ID, fname, mname, lname, dob, email)
@@ -51,7 +51,7 @@ COMMIT;
 CREATE TABLE delivery
        (delivery_ID INT PRIMARY KEY,
        delivery_date DATE NOT NULL,
-       address_ID INT REFERENCE address(address_ID));
+       address_ID INT REFERENCES address(address_ID));
 					
 INSERT INTO delivery(delivery_ID, delivery_date, address_ID) 
 	VALUES(98, to_date('31/10/2020', 'DD/MM/YYYY'), 34);
@@ -116,7 +116,7 @@ CREATE TABLE employees
        employee_DOB DATE NOT NULL,
        start_date DATE NOT NULL,
        payment_account VARCHAR(20) NOT NULL,
-       address_ID INT REFERENCE address(address_ID),
+       address_ID INT REFERENCES address(address_ID),
        employee_position VARCHAR(15) NOT NULL);
 					
 INSERT INTO employees(employee_ID, employee_fname, employee_mname, employee_lname, employee_DOB, start_date, payment_account, address_ID, employee_position)
